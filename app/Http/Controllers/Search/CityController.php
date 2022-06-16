@@ -19,7 +19,7 @@ class CityController extends Controller
     {
         // Start validation
         $this->validate($request, [
-            'city_id' => 'required'
+            'city_id' => 'required|int'
         ]);
 
         // Retrieve query param

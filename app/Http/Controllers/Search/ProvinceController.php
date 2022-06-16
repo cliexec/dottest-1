@@ -19,7 +19,7 @@ class ProvinceController extends Controller
     {
         // Start validation
         $this->validate($request, [
-            'province_id' => 'required'
+            'province_id' => 'required|int'
         ]);
 
         // Retrieve query param
