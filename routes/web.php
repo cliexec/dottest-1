@@ -21,6 +21,25 @@ $router->get('/', function () use ($router) {
 });
 
 $router->group(['namespace' => 'Search', 'prefix' => 'search'], function() use ($router) {
-    $router->get('/provinces', 'ProvinceController@show');
-    $router->get('/cities', 'CityController@show');
+    // Default source
+    $provinceController = 'ProvinceController@show';
+    $cityController = 'CityController@show';
+    $source = env('LOCATION_SOURCE');
+
+    // Swapable location source
+    switch($source)
+    {
+        case 'rajaongkir':
+            $provinceController = 'ROProvinceController@show';
+            $cityController = 'ROCityController@show';
+            break;
+        case 'wano':
+            // Waiting Mr. Momo open their land
+            break;
+        default:
+            // use local database as default
+    }
+
+    $router->get('/provinces', ['middleware' => 'auth', 'uses' => $provinceController]);
+    $router->get('/cities', ['middleware' => 'auth', 'uses' => $cityController]);
 });

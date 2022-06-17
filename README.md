@@ -19,10 +19,24 @@ Pastikan `composer`, `git`, 'CLI' dan tools pemprograman PHP lainnya sudah terse
 4. Ambil dan simpan data provinsi dan kota dari RajaOngkir `php artisan fetch:provinces`
 5. Jalankan server `php -S localhost:8001 -t public`
 
+# Menentukan sumber data lokasi
+
+Pada file `.env` definisikan `LOCATION_SOURCE=` default mengambil dari database. Set ke `LOCATION_SOURCE=rajaongkir` untuk fetch langsung dari API RajaOngkir.
+
+# Membuat user
+
+Jalankan perintah `php artisan create:user email=saya@gmail.com name=rahman token=123456` salin kode token yang muncul.
+
+Argumen yang tersedia:
+
+1. `email`
+3. `name`
+4. `token`
+
 # Bermain dengan REST API
 
-1. Perlihatkan provinsi berdasarkan id. Paste `http://localhost:8001/search/provinces?province_id=11` ke address bar browser. Nilai dari parameter `province_id` wajib, hanya menerima angka.
-2. Perlihatkan kota berdasarkan id. Paste `http://localhost:8001/search/cities?city_id=14` ke address bar browser. Nilai dari parameter `city_id` wajib, hanya menerima angka.
+1. Perlihatkan provinsi berdasarkan id. Paste `http://localhost:8001/search/provinces?province_id=11&token=<sesuaikan dengan token ketika membuat user>` ke address bar browser. Nilai dari parameter `province_id` wajib, hanya menerima angka.
+2. Perlihatkan kota berdasarkan id. Paste `http://localhost:8001/search/cities?city_id=14&token=<sesuaikan dengan token ketika membuat user>` ke address bar browser. Nilai dari parameter `city_id` wajib, hanya menerima angka.
 
 # Catatan PENTING!
 
